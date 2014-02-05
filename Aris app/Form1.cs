@@ -12,6 +12,12 @@ namespace Aris_app
 {
     public partial class Form1 : Form
     {
+        public delegate void UpdateBreathIn(decimal value);
+        public delegate void UpdateBreathInPause(decimal value);
+        public delegate void UpdateBreathOut(decimal value);
+        public delegate void UpdateBreathOutPause(decimal value);
+        public delegate void UpdateOverall(decimal value);
+
         private decimal t1 = 0;
         private decimal t2 = 0;
         private decimal t3 = 0;
@@ -50,12 +56,12 @@ namespace Aris_app
         private void button1_Click(object sender, EventArgs e)
         {
             runningState = 1;
+            redrawTemplate(this, null);
 
             if (runningThread != null && runningThread.ThreadState == ThreadState.Suspended)
             {
                 runningState = 1;
                 startTime = new DateTime(DateTime.Now.Ticks - timeDif.Ticks);
-                redrawTemplate(this, null);
                 runningThread.Resume();
             }
             else
@@ -79,7 +85,7 @@ namespace Aris_app
             t2 = numericUpDown2.Value;
             t3 = numericUpDown3.Value;
             t4 = numericUpDown4.Value;
-            ts = numericUpDown5.Value;
+            ts = numericUpDown5.Value * 60;
             Pen pen = new Pen(Color.FromArgb(0, 0, 0), 2);
             canvas = splitContainer1.Panel2.CreateGraphics();
             /*canvas.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;*/
@@ -98,6 +104,7 @@ namespace Aris_app
             {
                 canvas.DrawLine(pen, (float)(box1Point.X + ((boxWidth / t1) * (i + 1))), box1Point.Y, (float)(box1Point.X + ((boxWidth / t1) * (i + 1))), box1Point.Y + boxHeight);
             }
+            lblBreathInOverall.Text = "/ " + t1.ToString() + " c";
             /* box2 */
             if (t2 == 0)
             {
@@ -112,6 +119,7 @@ namespace Aris_app
             {
                 canvas.DrawLine(pen, (float)(box2Point.X + ((boxWidth / t2) * (i + 1))), box2Point.Y, (float)(box2Point.X + ((boxWidth / t2) * (i + 1))), box2Point.Y + boxHeight);
             }
+            lblBreathInPauseOverall.Text = "/ " + t2.ToString() + " c";
             /* box3 */
             if (t3 == 0)
             {
@@ -126,6 +134,7 @@ namespace Aris_app
             {
                 canvas.DrawLine(pen, (float)(box3Point.X + ((boxWidth / t3) * (i + 1))), box3Point.Y, (float)(box3Point.X + ((boxWidth / t3) * (i + 1))), box3Point.Y + boxHeight);
             }
+            lblBreathOutOverall.Text = "/ " + t3.ToString() + " c";
             /* box4 */
             if (t4 == 0)
             {
@@ -140,6 +149,7 @@ namespace Aris_app
             {
                 canvas.DrawLine(pen, (float)(box4Point.X + ((boxWidth / t4) * (i + 1))), box4Point.Y, (float)(box4Point.X + ((boxWidth / t4) * (i + 1))), box4Point.Y + boxHeight);
             }
+            lblBreathOutPauseOverall.Text = "/ " + t4.ToString() + " c";
             /* box5 */
             if (ts == 0)
             {
@@ -150,6 +160,7 @@ namespace Aris_app
                 pen.Color = Color.Black;
             }
             canvas.DrawRectangle(pen, box5Point.X, box5Point.Y, boxWidth, boxHeight);
+            lblOverallTimeOverall.Text = "/ " + Math.Round(ts / 60, 2).ToString() + " мин";
         }
 
         private void refreshThread() 
@@ -209,6 +220,11 @@ namespace Aris_app
                     }
                 }
             }
+            Invoke(new UpdateBreathIn(updateBreathIn), (decimal)w1 / boxWidth * t1);
+            Invoke(new UpdateBreathIn(updateBreathInPause), (decimal)w2 / boxWidth * t2);
+            Invoke(new UpdateBreathIn(updateBreathOut), (decimal)w3 / boxWidth * t3);
+            Invoke(new UpdateBreathIn(updateBreathOutPause), (decimal)w4 / boxWidth * t4);
+
             if (w1 != box1Width && t1 > 0)
             {
                 canvas.FillRectangle(brush, box1Point.X, box1Point.Y, w1, boxHeight);
@@ -272,6 +288,36 @@ namespace Aris_app
         private void button3_Click(object sender, EventArgs e)
         {
             stop();
+        }
+
+        private void updateBreathIn(decimal time)
+        {
+            lblBreathInCurrent.Text = Math.Floor(time).ToString();
+        }
+
+        private void updateBreathInPause(decimal time)
+        {
+            lblBreathInPauseCurrent.Text = Math.Floor(time).ToString();
+        }
+
+        private void updateBreathOut(decimal time)
+        {
+            lblBreathOutCurrent.Text = Math.Floor(time).ToString();
+        }
+
+        private void updateBreathOutPause(decimal time)
+        {
+            lblBreathOutPauseCurrent.Text = Math.Floor(time).ToString();
+        }
+
+        private void updateOverall(decimal time)
+        {
+            lblOverallTimeCurrent.Text = Math.Floor(time).ToString();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
         }
     }
 }

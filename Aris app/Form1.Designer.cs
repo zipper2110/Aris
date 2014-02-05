@@ -48,6 +48,16 @@
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.lblOverallTimeOverall = new System.Windows.Forms.Label();
+            this.lblOverallTimeCurrent = new System.Windows.Forms.Label();
+            this.lblBreathOutPauseOverall = new System.Windows.Forms.Label();
+            this.lblBreathOutPauseCurrent = new System.Windows.Forms.Label();
+            this.lblBreathOutOverall = new System.Windows.Forms.Label();
+            this.lblBreathOutCurrent = new System.Windows.Forms.Label();
+            this.lblBreathInPauseOverall = new System.Windows.Forms.Label();
+            this.lblBreathInPauseCurrent = new System.Windows.Forms.Label();
+            this.lblBreathInOverall = new System.Windows.Forms.Label();
+            this.lblBreathInCurrent = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
@@ -96,6 +106,16 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer1.Panel2.Controls.Add(this.lblOverallTimeOverall);
+            this.splitContainer1.Panel2.Controls.Add(this.lblOverallTimeCurrent);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathOutPauseOverall);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathOutPauseCurrent);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathOutOverall);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathOutCurrent);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathInPauseOverall);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathInPauseCurrent);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathInOverall);
+            this.splitContainer1.Panel2.Controls.Add(this.lblBreathInCurrent);
             this.splitContainer1.Panel2.Controls.Add(this.label15);
             this.splitContainer1.Panel2.Controls.Add(this.label14);
             this.splitContainer1.Panel2.Controls.Add(this.label13);
@@ -107,15 +127,18 @@
             // 
             // numericUpDown5
             // 
+            this.numericUpDown5.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Aris_app.Properties.Settings.Default, "overallTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.numericUpDown5.DecimalPlaces = 2;
             this.numericUpDown5.Location = new System.Drawing.Point(19, 308);
             this.numericUpDown5.Maximum = new decimal(new int[] {
-            1000000,
+            1000,
             0,
             0,
             0});
             this.numericUpDown5.Name = "numericUpDown5";
             this.numericUpDown5.Size = new System.Drawing.Size(120, 24);
             this.numericUpDown5.TabIndex = 17;
+            this.numericUpDown5.Value = global::Aris_app.Properties.Settings.Default.overallTime;
             this.numericUpDown5.ValueChanged += new System.EventHandler(this.redrawTemplate);
             // 
             // label9
@@ -123,9 +146,9 @@
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(145, 310);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(14, 17);
+            this.label9.Size = new System.Drawing.Size(32, 17);
             this.label9.TabIndex = 16;
-            this.label9.Text = "с";
+            this.label9.Text = "мин";
             // 
             // label10
             // 
@@ -138,10 +161,12 @@
             // 
             // numericUpDown4
             // 
+            this.numericUpDown4.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Aris_app.Properties.Settings.Default, "breathOutPauseTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown4.Location = new System.Drawing.Point(19, 235);
             this.numericUpDown4.Name = "numericUpDown4";
             this.numericUpDown4.Size = new System.Drawing.Size(120, 24);
             this.numericUpDown4.TabIndex = 14;
+            this.numericUpDown4.Value = global::Aris_app.Properties.Settings.Default.breathOutPauseTime;
             this.numericUpDown4.ValueChanged += new System.EventHandler(this.redrawTemplate);
             // 
             // label7
@@ -164,10 +189,12 @@
             // 
             // numericUpDown3
             // 
+            this.numericUpDown3.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Aris_app.Properties.Settings.Default, "BreathOutTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown3.Location = new System.Drawing.Point(19, 169);
             this.numericUpDown3.Name = "numericUpDown3";
             this.numericUpDown3.Size = new System.Drawing.Size(120, 24);
             this.numericUpDown3.TabIndex = 11;
+            this.numericUpDown3.Value = global::Aris_app.Properties.Settings.Default.BreathOutTime;
             this.numericUpDown3.ValueChanged += new System.EventHandler(this.redrawTemplate);
             // 
             // label5
@@ -190,10 +217,12 @@
             // 
             // numericUpDown2
             // 
+            this.numericUpDown2.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Aris_app.Properties.Settings.Default, "BreathInPauseTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown2.Location = new System.Drawing.Point(19, 104);
             this.numericUpDown2.Name = "numericUpDown2";
             this.numericUpDown2.Size = new System.Drawing.Size(120, 24);
             this.numericUpDown2.TabIndex = 8;
+            this.numericUpDown2.Value = global::Aris_app.Properties.Settings.Default.BreathInPauseTime;
             this.numericUpDown2.ValueChanged += new System.EventHandler(this.redrawTemplate);
             // 
             // label3
@@ -216,10 +245,12 @@
             // 
             // numericUpDown1
             // 
+            this.numericUpDown1.DataBindings.Add(new System.Windows.Forms.Binding("Value", global::Aris_app.Properties.Settings.Default, "breathInTime", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.numericUpDown1.Location = new System.Drawing.Point(19, 44);
             this.numericUpDown1.Name = "numericUpDown1";
             this.numericUpDown1.Size = new System.Drawing.Size(120, 24);
             this.numericUpDown1.TabIndex = 5;
+            this.numericUpDown1.Value = global::Aris_app.Properties.Settings.Default.breathInTime;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.redrawTemplate);
             // 
             // label2
@@ -272,6 +303,101 @@
             this.button1.TabIndex = 0;
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lblOverallTimeOverall
+            // 
+            this.lblOverallTimeOverall.AutoSize = true;
+            this.lblOverallTimeOverall.Location = new System.Drawing.Point(161, 420);
+            this.lblOverallTimeOverall.Name = "lblOverallTimeOverall";
+            this.lblOverallTimeOverall.Size = new System.Drawing.Size(50, 17);
+            this.lblOverallTimeOverall.TabIndex = 14;
+            this.lblOverallTimeOverall.Text = "/ 0 мин";
+            // 
+            // lblOverallTimeCurrent
+            // 
+            this.lblOverallTimeCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblOverallTimeCurrent.Location = new System.Drawing.Point(125, 420);
+            this.lblOverallTimeCurrent.Name = "lblOverallTimeCurrent";
+            this.lblOverallTimeCurrent.Size = new System.Drawing.Size(41, 13);
+            this.lblOverallTimeCurrent.TabIndex = 13;
+            this.lblOverallTimeCurrent.Text = "0";
+            this.lblOverallTimeCurrent.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblBreathOutPauseOverall
+            // 
+            this.lblBreathOutPauseOverall.AutoSize = true;
+            this.lblBreathOutPauseOverall.Location = new System.Drawing.Point(200, 320);
+            this.lblBreathOutPauseOverall.Name = "lblBreathOutPauseOverall";
+            this.lblBreathOutPauseOverall.Size = new System.Drawing.Size(32, 17);
+            this.lblBreathOutPauseOverall.TabIndex = 12;
+            this.lblBreathOutPauseOverall.Text = "/ 0 с";
+            // 
+            // lblBreathOutPauseCurrent
+            // 
+            this.lblBreathOutPauseCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBreathOutPauseCurrent.Location = new System.Drawing.Point(164, 320);
+            this.lblBreathOutPauseCurrent.Name = "lblBreathOutPauseCurrent";
+            this.lblBreathOutPauseCurrent.Size = new System.Drawing.Size(41, 13);
+            this.lblBreathOutPauseCurrent.TabIndex = 11;
+            this.lblBreathOutPauseCurrent.Text = "0";
+            this.lblBreathOutPauseCurrent.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblBreathOutOverall
+            // 
+            this.lblBreathOutOverall.AutoSize = true;
+            this.lblBreathOutOverall.Location = new System.Drawing.Point(119, 220);
+            this.lblBreathOutOverall.Name = "lblBreathOutOverall";
+            this.lblBreathOutOverall.Size = new System.Drawing.Size(32, 17);
+            this.lblBreathOutOverall.TabIndex = 10;
+            this.lblBreathOutOverall.Text = "/ 0 с";
+            // 
+            // lblBreathOutCurrent
+            // 
+            this.lblBreathOutCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBreathOutCurrent.Location = new System.Drawing.Point(83, 220);
+            this.lblBreathOutCurrent.Name = "lblBreathOutCurrent";
+            this.lblBreathOutCurrent.Size = new System.Drawing.Size(41, 13);
+            this.lblBreathOutCurrent.TabIndex = 9;
+            this.lblBreathOutCurrent.Text = "0";
+            this.lblBreathOutCurrent.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblBreathInPauseOverall
+            // 
+            this.lblBreathInPauseOverall.AutoSize = true;
+            this.lblBreathInPauseOverall.Location = new System.Drawing.Point(191, 120);
+            this.lblBreathInPauseOverall.Name = "lblBreathInPauseOverall";
+            this.lblBreathInPauseOverall.Size = new System.Drawing.Size(32, 17);
+            this.lblBreathInPauseOverall.TabIndex = 8;
+            this.lblBreathInPauseOverall.Text = "/ 0 с";
+            // 
+            // lblBreathInPauseCurrent
+            // 
+            this.lblBreathInPauseCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBreathInPauseCurrent.Location = new System.Drawing.Point(155, 120);
+            this.lblBreathInPauseCurrent.Name = "lblBreathInPauseCurrent";
+            this.lblBreathInPauseCurrent.Size = new System.Drawing.Size(41, 13);
+            this.lblBreathInPauseCurrent.TabIndex = 7;
+            this.lblBreathInPauseCurrent.Text = "0";
+            this.lblBreathInPauseCurrent.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // lblBreathInOverall
+            // 
+            this.lblBreathInOverall.AutoSize = true;
+            this.lblBreathInOverall.Location = new System.Drawing.Point(113, 20);
+            this.lblBreathInOverall.Name = "lblBreathInOverall";
+            this.lblBreathInOverall.Size = new System.Drawing.Size(32, 17);
+            this.lblBreathInOverall.TabIndex = 6;
+            this.lblBreathInOverall.Text = "/ 0 с";
+            // 
+            // lblBreathInCurrent
+            // 
+            this.lblBreathInCurrent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblBreathInCurrent.Location = new System.Drawing.Point(77, 20);
+            this.lblBreathInCurrent.Name = "lblBreathInCurrent";
+            this.lblBreathInCurrent.Size = new System.Drawing.Size(41, 13);
+            this.lblBreathInCurrent.TabIndex = 5;
+            this.lblBreathInCurrent.Text = "0";
+            this.lblBreathInCurrent.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // label15
             // 
@@ -328,6 +454,7 @@
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Aris application";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
@@ -370,6 +497,16 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label lblOverallTimeOverall;
+        private System.Windows.Forms.Label lblOverallTimeCurrent;
+        private System.Windows.Forms.Label lblBreathOutPauseOverall;
+        private System.Windows.Forms.Label lblBreathOutPauseCurrent;
+        private System.Windows.Forms.Label lblBreathOutOverall;
+        private System.Windows.Forms.Label lblBreathOutCurrent;
+        private System.Windows.Forms.Label lblBreathInPauseOverall;
+        private System.Windows.Forms.Label lblBreathInPauseCurrent;
+        private System.Windows.Forms.Label lblBreathInOverall;
+        private System.Windows.Forms.Label lblBreathInCurrent;
     }
 }
 
